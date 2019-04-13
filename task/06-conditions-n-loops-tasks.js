@@ -171,7 +171,13 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    for (let i = 0; i < str.length; i++) {
+        let c = str.charAt(i);
+        if (str.indexOf(c) == i && str.indexOf(c, i + 1) == -1) {
+            return c;
+        }
+    }
+    return null;
 }
 
 
@@ -214,7 +220,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    return str.split('').reverse().join('');
 }
 
 
@@ -231,7 +237,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    return num.toString().split('').reverse().join('');
 }
 
 
@@ -275,7 +281,15 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    let str = num.toString();
+    let sum = 0;
+    if (str.length === 1) {
+        return +str;
+    }
+    for (let i = 0; i < str.length; i++) {
+        sum += +str[i];
+    }
+    return getDigitalRoot(sum);
 }
 
 
@@ -301,7 +315,24 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    let bracets = "[]{}()<>";
+    const stack = [];
+    let character, bracePosition;
+
+    for (let i = 0; character = str[i]; i++) {
+        bracePosition = bracets.indexOf(character);
+        if (bracePosition === -1) {
+            continue;
+        }
+        if (bracePosition % 2 === 0) {
+            stack.push(bracePosition + 1);
+        } else {
+            if (stack.length === 0 || stack.pop() !== bracePosition) {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;;
 }
 
 
@@ -361,7 +392,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 
@@ -401,7 +432,17 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    throw new Error('Not implemented');
+    const matrix = new Array(m1.length); 
+    for (var r = 0; r < m1.length; ++r) {
+        matrix[r] = new Array(m2[0].length);
+        for (var c = 0; c < m2[0].length; ++c) {
+            matrix[r][c] = 0;
+            for (var i = 0; i < m1[0].length; ++i) {
+                matrix[r][c] += m1[r][i] * m2[i][c];
+            }
+        }
+    }
+    return matrix;
 }
 
 

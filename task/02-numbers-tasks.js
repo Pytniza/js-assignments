@@ -54,8 +54,7 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-    if (value1 + value2 < Infinity) return (value1 + value2) / 2;
-    return Math.min(value1);
+    return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -112,8 +111,18 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
+    throw new Error('Not implemented')
+    //a = {3; 4} and b = {4; 3}.
     //return (x1 * x2 + y2 * y2)/(Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2)) * Math.sqrt(Math.pow(x2, 2) + Math.pow(y2, 2))) * Math.PI/180;
-    throw new Error('Not implemented');
+    //a·b = 3 · 4 + 4 · 3 = 12 + 12 = 24.
+//     |a| = √32 + 42 = √9 + 16 = √25 = 5
+// |b| = √42 + 32 = √16 + 9 = √25 = 5
+//     let ab = x1 * y1 + x2 * y2;
+//     let a = Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2));
+//     let b = Math.sqrt(Math.pow(x2, 2) + Math.pow(y2, 2));
+//     let co = ab / (a * b)
+
+// return Math.cos(co);
 //     Через Math.acos + Math.hypot+ еще что-то решается
 // Если формула есть, то подставишь
 }
@@ -239,10 +248,11 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    throw new Error('Not implemented')
-    // const num = Number(value);
-    // if (typeof(num) === 'number' && num !== NaN) return num;
-    //return def;
+    const num = parseInt(value);
+    if (typeof(num) === 'number' && num) {
+        return value;
+    };
+    return def;
 }
 
 module.exports = {

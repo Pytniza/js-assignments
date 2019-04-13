@@ -328,7 +328,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+   const arr2 = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+   return arr.sort((a, b) => arr2.indexOf(a) - arr2.indexOf(b))
 }
 
 /** 
@@ -423,6 +424,20 @@ function toStringList(arr) {
  */
 function sortCitiesArray(arr) {
    throw new Error('Not implemented');
+   arr.sort(function (a, b) {
+      if (a.country < b.country)
+         return -1;
+      if (a.country > b.country)
+         return 1;
+      return 0;
+   }); 
+   return arr.sort((a, b) => {
+      if (a.country === b.country && a.city < b.city)
+         return -1;
+      if (a.country === b.country && a.city > b.city)
+         return 1;
+      return 0;
+   });
 }
 
 /**

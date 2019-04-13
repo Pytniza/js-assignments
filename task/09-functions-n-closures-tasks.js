@@ -26,7 +26,7 @@
  *
  */
 function getComposition(f,g) {
-    throw new Error('Not implemented');
+    return (...x) => f(g(...x));
 }
 
 
@@ -57,7 +57,7 @@ function getPowerFunction(exponent) {
  *
  * @params {integer}
  * @return {Function}
- *
+ *a_{n}x^{n}+a_{n-1}x^{n-1}+\dotsb +a_{2}x^{2}+a_{1}x+a_{0},
  * @example
  *   getPolynom(2,3,5) => y = 2*x^2 + 3*x + 5
  *   getPolynom(1,-3)  => y = x - 3
@@ -65,6 +65,7 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
+    //if (arguments.length == 1) return arguments[0];
     throw new Error('Not implemented');
 }
 
