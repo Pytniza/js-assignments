@@ -33,20 +33,22 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented')
-    let pluralizeBottles = count => count !== 1 ? "bottles" : "bottle";
-    let takeNext = next => next >= 1 ? next.toString() : "No more";
-    for (let i = 99; i >= 0; i--) {
-        let bottle = pluralizeBottles(i);
-        let bottleNext = pluralizeBottles(i - 1);
-        let left = takeNext(i);
-        let toTake = i > 1 ? "one" : (i == 1 ? "it" : "no more");
-        let toTakeNext = takeNext(i - 1);
-        let line1 = `${left} ${bottle} of beer on the wall, ${left.toLowerCase()} ${bottle} of beer.`;
-        let line2 = `\nTake ${toTake} down and pass it around, ${toTakeNext.toLowerCase()} ${bottleNext} of beer on the wall.\n`;
-        yield `${line1}${i > 0 ? line2 : ""}`;
+    let i = 99;
+    let j = true;
+    while (i > 0) {
+        if (j)
+            yield `${i} bottle${i > 1 ? 's' : ''} of beer on the wall, ${i} bottle${i > 1 ? 's' : ''} of beer.`;
+        else {
+            --i;
+            if (i)
+                yield `Take one down and pass it around, ${i} bottle${i > 1 ? 's' : ''} of beer on the wall.`;
+            else
+                yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+        }
+        j = !j;
     }
-    yield `Go to the store and buy some more, ${99} bottles of beer on the wall.\nTake ${toTake} down and pass it around, ${toTakeNext.toLowerCase()} ${bottleNext} of beer on the wall.\n`;
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -60,7 +62,14 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    let a = 0;
+    let b = 1;
+    while (true) {
+        let c = a;
+        a = b;
+        b = a + c;
+        yield c;
+    }
 }
 
 

@@ -431,7 +431,7 @@ function sortCitiesArray(arr) {
       else if (a.city < b.city)
          return -1;
       else (a.country === b.country && a.city > b.city)
-         return 1;
+      return 1;
    });
 }
 
@@ -524,7 +524,14 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+   return array.reduce((acc, item) => {
+      const key = keySelector(item);
+      const value = valueSelector(item);
+      const arr = acc.get(key) || [];
+      arr.push(value);
+      acc.set(key, arr);
+      return acc;
+   }, new Map);
 }
 
 

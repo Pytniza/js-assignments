@@ -155,15 +155,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    // { попадает ли точка M(x,y) в круг с центром O(Xc,Yc) и радиусом R }
-    // var xc,yc,point.x,my,d,r:real;
-    // begin
-    //      writeln('введите M(X,Y), O(Xc,Yc) и R');
-    //      readln( point.x,point.y,circle.x,circle.y,r );
-    throw new Error('Not implemented');
-    // let d = Math.sqrt(Math.pow((circle.center.x - point.x), 2) + Math.pow((circle.center.y - point.y), 2));
-    // if (d <= circle.r) return true
-    // else return false;
+    return Math.hypot(circle.center.x - point.x, circle.center.y - point.y) < circle.radius;
 }
 
 
@@ -277,7 +269,7 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    return ccn.toString().split('').reverse().map((x) => parseInt(x)).map((x, i) => i % 2 ? x * 2 : x).map((x) => x > 9 ? (x % 10) + 1 : x).reduce((acc, x) => acc += x) % 10 === 0;
 }
 
 
@@ -424,7 +416,20 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+    let str = '';
+    for (let i = 0; i < pathes[0].length; i++) {
+        let a = true;
+        for (let j = 1; j < pathes.length; j++)
+            if (pathes[0][i] != pathes[j][i]) {
+                a = false;
+                break;
+            }
+        if (!a)
+            break;
+        else
+            str += pathes[0][i];
+    }
+    return str.slice(0, str.lastIndexOf('/') + 1);
 }
 
 
@@ -448,11 +453,11 @@ function getCommonDirectoryPath(pathes) {
  */
 function getMatrixProduct(m1, m2) {
     const matrix = new Array(m1.length);
-    for (var r = 0; r < m1.length; ++r) {
+    for (let r = 0; r < m1.length; ++r) {
         matrix[r] = new Array(m2[0].length);
-        for (var c = 0; c < m2[0].length; ++c) {
+        for (let c = 0; c < m2[0].length; ++c) {
             matrix[r][c] = 0;
-            for (var i = 0; i < m1[0].length; ++i) {
+            for (let i = 0; i < m1[0].length; ++i) {
                 matrix[r][c] += m1[r][i] * m2[i][c];
             }
         }
