@@ -64,6 +64,21 @@ function parseBankAccount(bankAccount) {
  */
 function* wrapText(text, columns) {
     throw new Error('Not implemented');
+    const arr = text.split(' ');
+    const arr2 = [];
+    for (let i = 0; i < arr.length; i++) {
+        // let str = '';
+
+        let str = arr.reduce((acc, item) => {
+            while (acc.length < columns) {
+                acc + item
+            }
+        }, '')
+
+        arr2.push(str);
+    }
+    console.log(arr2)
+    return arr2;
 }
 
 
@@ -135,12 +150,12 @@ function getPokerHandRank(hand) {
  *    '+-------------+\n'
  */
 function* getFigureRectangles(figure) {
-   throw new Error('Not implemented');
+    throw new Error('Not implemented');
 }
 
 
 module.exports = {
-    parseBankAccount : parseBankAccount,
+    parseBankAccount: parseBankAccount,
     wrapText: wrapText,
     PokerRank: PokerRank,
     getPokerHandRank: getPokerHandRank,

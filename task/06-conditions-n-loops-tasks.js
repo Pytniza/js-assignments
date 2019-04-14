@@ -155,7 +155,15 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
+    // { попадает ли точка M(x,y) в круг с центром O(Xc,Yc) и радиусом R }
+    // var xc,yc,point.x,my,d,r:real;
+    // begin
+    //      writeln('введите M(X,Y), O(Xc,Yc) и R');
+    //      readln( point.x,point.y,circle.x,circle.y,r );
     throw new Error('Not implemented');
+    // let d = Math.sqrt(Math.pow((circle.center.x - point.x), 2) + Math.pow((circle.center.y - point.y), 2));
+    // if (d <= circle.r) return true
+    // else return false;
 }
 
 
@@ -203,7 +211,14 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    if (isStartIncluded && isEndIncluded && a < b) return `[${a}, ${b}]`;
+    if (isStartIncluded && isEndIncluded && a > b) return `[${b}, ${a}]`
+    if (isStartIncluded && !isEndIncluded && a < b) return `[${a}, ${b})`;
+    if (isStartIncluded && !isEndIncluded && a > b) return `[${b}, ${a})`;
+    if (!isStartIncluded && isEndIncluded && a < b) return `(${a}, ${b}]`;
+    if (!isStartIncluded && isEndIncluded && a > b) return `(${b}, ${a}]`;
+    if (!isStartIncluded && !isEndIncluded && a < b) return `(${a}, ${b})`;
+    else return `(${b}, ${a})`
 }
 
 
@@ -432,7 +447,7 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    const matrix = new Array(m1.length); 
+    const matrix = new Array(m1.length);
     for (var r = 0; r < m1.length; ++r) {
         matrix[r] = new Array(m2[0].length);
         for (var c = 0; c < m2[0].length; ++c) {

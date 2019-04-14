@@ -33,7 +33,20 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    throw new Error('Not implemented')
+    let pluralizeBottles = count => count !== 1 ? "bottles" : "bottle";
+    let takeNext = next => next >= 1 ? next.toString() : "No more";
+    for (let i = 99; i >= 0; i--) {
+        let bottle = pluralizeBottles(i);
+        let bottleNext = pluralizeBottles(i - 1);
+        let left = takeNext(i);
+        let toTake = i > 1 ? "one" : (i == 1 ? "it" : "no more");
+        let toTakeNext = takeNext(i - 1);
+        let line1 = `${left} ${bottle} of beer on the wall, ${left.toLowerCase()} ${bottle} of beer.`;
+        let line2 = `\nTake ${toTake} down and pass it around, ${toTakeNext.toLowerCase()} ${bottleNext} of beer on the wall.\n`;
+        yield `${line1}${i > 0 ? line2 : ""}`;
+    }
+    yield `Go to the store and buy some more, ${99} bottles of beer on the wall.\nTake ${toTake} down and pass it around, ${toTakeNext.toLowerCase()} ${bottleNext} of beer on the wall.\n`;
 }
 
 

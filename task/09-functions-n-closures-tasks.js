@@ -25,7 +25,7 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.acos(x))
  *
  */
-function getComposition(f,g) {
+function getComposition(f, g) {
     return (...x) => f(g(...x));
 }
 
@@ -172,7 +172,8 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-    throw new Error('Not implemented');
+    let currentCount = startFrom;
+    return () => currentCount++;
 }
 
 

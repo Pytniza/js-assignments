@@ -423,20 +423,15 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   throw new Error('Not implemented');
-   arr.sort(function (a, b) {
+   return arr.sort(function (a, b) {
       if (a.country < b.country)
          return -1;
-      if (a.country > b.country)
-         return 1;
-      return 0;
-   }); 
-   return arr.sort((a, b) => {
-      if (a.country === b.country && a.city < b.city)
+      else if (a.country > b.country)
+         return 1
+      else if (a.city < b.city)
          return -1;
-      if (a.country === b.country && a.city > b.city)
+      else (a.country === b.country && a.city > b.city)
          return 1;
-      return 0;
    });
 }
 
@@ -562,7 +557,9 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-   throw new Error('Not implemented');
+   if (indexes.length === 1) return arr[indexes[0]];
+   if (indexes.length === 2) return arr[indexes[0]][indexes[1]];
+   if (indexes.length === 3) return arr[indexes[0]][indexes[1]][indexes[2]];
 }
 
 
@@ -585,7 +582,16 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-   throw new Error('Not implemented');
+   //if (arr.length < 2) return arr;
+   if (arr.length < 4) return arr.reverse();
+   const s = Math.floor(arr.length / 2);
+   const head = arr.slice(0, s);
+   if (arr.length % 2 == 1) {
+      const tail = arr.slice(s + 1);
+      return tail.concat(arr[s], head)
+   }
+   const tail = arr.slice(s);
+   return tail.concat(head)
 }
 
 
